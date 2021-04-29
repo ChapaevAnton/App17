@@ -1,15 +1,6 @@
 package kingdom
 
-fun main(args: Array<String>) {
-    val kingdom = Kingdom()
-    println(kingdom.ruler)
-    println(kingdom.heirs)
-    println(kingdom.archers)
-    println(kingdom.warriors)
-
-}
-
-
+// TODO: 29.04.2021 17.1
 class Kingdom {
     val ruler = Ruler("Король Артур")
     val heirs = mutableListOf<Heir>()
@@ -67,3 +58,14 @@ data class Archer(val bow: String = "long bow", val dagger: String = "none") {
 
 
 data class Warrior(val weapon: String) //30
+
+enum class Weapons(private val nameWeapons: String) {
+    SWORD("sword"),
+    DAGGER("dagger"),
+    BOW("bow"),
+    AXE("axe"),
+    STAFF("staff");
+
+    fun getWeapons() = nameWeapons
+
+}
