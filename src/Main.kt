@@ -1,4 +1,4 @@
-import delegation.Cat
+import data.Data
 import extend.X
 import extend.Y
 import valvar.ValVAr
@@ -32,7 +32,11 @@ fun main(args: Array<String>) {
     println(valVAr.intValue)
     println(valVAr.strValue)
 
-
+    val data = Data(1,2,3)
+    val (val1,val2,val3) = data
+    println(val1)
+    println(val2)
+    println(val3)
 
 }
 

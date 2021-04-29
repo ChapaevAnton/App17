@@ -1,6 +1,6 @@
 package data
 
-data class Data(val value1: Int, val value2: Int) {
+data class Data(val value1: Int, val value2: Int, val value3: Int) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
