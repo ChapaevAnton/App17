@@ -30,7 +30,6 @@ data class Archer(val weaponFirst: Weapons = Weapons.BOW, val weaponSecond: Weap
 data class Warrior(val weaponFirst: Weapons) //30
 
 //citizen
-
 data class Peasant(val profession: Profession)
 
 enum class Profession(private val profession: String) {
@@ -41,7 +40,6 @@ enum class Profession(private val profession: String) {
     override fun toString(): String {
         return profession
     }
-
 
 
 }

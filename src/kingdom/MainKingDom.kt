@@ -10,5 +10,11 @@ fun main(args: Array<String>) {
     println(kingdom.warriors)
     println(kingdom.peasant)
 
+    kingdom.workerTaskCollectors.collect()
+    kingdom.farmerTaskCollectors.collect()
+    kingdom.builderTaskCollectors.collect()
+
+    println("Золота в казне: ${kingdom.coffers}")
+
 
 }

@@ -7,6 +7,7 @@ class Kingdom {
     val archers = mutableListOf<Archer>()
     val warriors = mutableListOf<Warrior>()
     val peasant = mutableListOf<Peasant>()
+    var coffers = 0
     private val baseNames = listOf("Иван", "Петр", "Николай", "Александр")
 
     init {
@@ -42,10 +43,38 @@ class Kingdom {
                     else -> Peasant(Profession.WORKER)
                 }
             )
-
         }
 
     }
+
+    //task collector
+    val workerTaskCollectors = object : TaskCollectors() {
+        override fun collect() {
+            val list = peasant.filter { it.profession == Profession.WORKER }
+            val count = list.size
+            coffers += count
+            println("Сбор налогов ${Profession.WORKER}, $count человек")
+        }
+    }
+
+    val builderTaskCollectors = object : TaskCollectors() {
+        override fun collect() {
+            val list = peasant.filter { it.profession == Profession.BUILDER }
+            val count = list.size
+            coffers += count * 2
+            println("Сбор налогов ${Profession.BUILDER}, $count человек")
+        }
+    }
+
+    val farmerTaskCollectors = object : TaskCollectors() {
+        override fun collect() {
+            val list = peasant.filter { it.profession == Profession.FARMER }
+            val count = list.size
+            coffers += count * 3
+            println("Сбор налогов ${Profession.FARMER}, $count человек")
+        }
+    }
+
 
 }
 
