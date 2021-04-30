@@ -6,6 +6,7 @@ class Kingdom {
     val heirs = mutableListOf<Heir>()
     val archers = mutableListOf<Archer>()
     val warriors = mutableListOf<Warrior>()
+    val peasant = mutableListOf<Peasant>()
     private val baseNames = listOf("Иван", "Петр", "Николай", "Александр")
 
     init {
@@ -24,12 +25,24 @@ class Kingdom {
 
         //init archer
         for (i in 0 until 20) {
-            archers.add(if (i % 2 == 0) Archer("dagger") else Archer())
+            archers.add(if (i % 2 == 0) Archer(Weapons.DAGGER) else Archer())
         }
 
         //init warrior
         for (i in 0 until 30) {
-            warriors.add(if (i % 2 == 0) Warrior("sword") else Warrior("axe"))
+            warriors.add(if (i % 2 == 0) Warrior(Weapons.SWORD) else Warrior(Weapons.AXE))
+        }
+
+        //peasant
+        for (i in 0 until 100) {
+            peasant.add(
+                when {
+                    i % 2 == 0 -> Peasant(Profession.BUILDER)
+                    i % 3 == 0 -> Peasant(Profession.FARMER)
+                    else -> Peasant(Profession.WORKER)
+                }
+            )
+
         }
 
     }
@@ -37,35 +50,5 @@ class Kingdom {
 }
 
 
-open class Ruler(val name: String, var intellect: Int = 10, var power: Int = 10) {
-    override fun toString() = "name: $name intellect: $intellect power: $power"
-
-}
 
 
-class Heir(name: String) : Ruler(name) {
-
-    // TODO: 29.04.2021 gen intellect and power
-    init {
-        intellect += (1..5).random()
-        power += (1..5).random()
-    }
-}
-
-data class Archer(val bow: String = "long bow", val dagger: String = "none") {
-    constructor(dagger: String) : this("long bow", dagger)
-} //20
-
-
-data class Warrior(val weapon: String) //30
-
-enum class Weapons(private val nameWeapons: String) {
-    SWORD("sword"),
-    DAGGER("dagger"),
-    BOW("bow"),
-    AXE("axe"),
-    STAFF("staff");
-
-    fun getWeapons() = nameWeapons
-
-}
