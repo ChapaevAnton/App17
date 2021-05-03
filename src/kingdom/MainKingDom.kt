@@ -2,6 +2,10 @@ package kingdom
 
 fun main(args: Array<String>) {
 
+    println("На нас напали!".yourHighness())
+    println("Ваша популярность падает!".yourHighness())
+    println("Нужно больше золота!".yourHighness())
+
     Ruler.getGerold()
     val kingdom = Kingdom()
     println(kingdom.ruler)
@@ -10,9 +14,9 @@ fun main(args: Array<String>) {
     println(kingdom.warriors)
     println(kingdom.peasant)
 
-    kingdom.workerTaskCollectors.collect()
-    kingdom.farmerTaskCollectors.collect()
-    kingdom.builderTaskCollectors.collect()
+    println(kingdom.workerTaskCollectors.collect())
+    println(kingdom.farmerTaskCollectors.collect())
+    println(kingdom.builderTaskCollectors.collect())
 
     println("Золота в казне: ${kingdom.coffers}")
 

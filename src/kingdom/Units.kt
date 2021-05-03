@@ -41,6 +41,8 @@ enum class Profession(private val profession: String) {
         return profession
     }
 
-
 }
+
+//extends fun
+fun String.yourHighness() = "Ваше высочество, $this"
 

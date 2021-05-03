@@ -12,66 +12,85 @@ class Kingdom {
 
     init {
         //init heir
-        for (i in 0..10) {
-            heirs.add(
-                Heir(
-                    "${
-                        if (i >= baseNames.size)
-                            baseNames[i % baseNames.size]
-                        else baseNames[i]
-                    } $i"
-                )
-            )
-        }
+        addHeir(10)
 
         //init archer
-        for (i in 0 until 20) {
-            archers.add(if (i % 2 == 0) Archer(Weapons.DAGGER) else Archer())
-        }
+        addArcher(20)
 
         //init warrior
-        for (i in 0 until 30) {
-            warriors.add(if (i % 2 == 0) Warrior(Weapons.SWORD) else Warrior(Weapons.AXE))
-        }
+        addWarrior(30)
 
         //peasant
-        for (i in 0 until 100) {
+        addPeasant(100)
+
+    }
+
+    private fun addPeasant(amount: Int) {
+        for (i in 0 until amount) {
             peasant.add(
-                when {
-                    i % 2 == 0 -> Peasant(Profession.BUILDER)
-                    i % 3 == 0 -> Peasant(Profession.FARMER)
-                    else -> Peasant(Profession.WORKER)
-                }
+                    when {
+                        i % 2 == 0 -> Peasant(Profession.BUILDER)
+                        i % 3 == 0 -> Peasant(Profession.FARMER)
+                        else -> Peasant(Profession.WORKER)
+                    }
             )
         }
+    }
 
+    private fun addWarrior(amount: Int) {
+        for (i in 0 until amount) {
+            warriors.add(if (i % 2 == 0) Warrior(Weapons.SWORD) else Warrior(Weapons.AXE))
+        }
+    }
+
+    private fun addArcher(amount: Int) {
+        for (i in 0 until amount) {
+            archers.add(if (i % 2 == 0) Archer(Weapons.DAGGER) else Archer())
+        }
+    }
+
+    private fun addHeir(amount: Int) {
+        for (i in 0..amount) {
+            heirs.add(
+                    Heir(
+                            "${
+                                if (i >= baseNames.size)
+                                    baseNames[i % baseNames.size]
+                                else baseNames[i]
+                            } $i"
+                    )
+            )
+        }
     }
 
     //task collector
     val workerTaskCollectors = object : TaskCollectors() {
-        override fun collect() {
+        override fun collect(): Int {
             val list = peasant.filter { it.profession == Profession.WORKER }
-            val count = list.size
-            coffers += count
-            println("Сбор налогов ${Profession.WORKER}, $count человек")
+            val sum = list.size * 1
+            coffers += sum
+            println("Сбор налогов ${Profession.WORKER}, ${list.size} человек")
+            return sum
         }
     }
 
     val builderTaskCollectors = object : TaskCollectors() {
-        override fun collect() {
+        override fun collect(): Int {
             val list = peasant.filter { it.profession == Profession.BUILDER }
-            val count = list.size
-            coffers += count * 2
-            println("Сбор налогов ${Profession.BUILDER}, $count человек")
+            val sum = list.size * 2
+            coffers += sum
+            println("Сбор налогов ${Profession.BUILDER}, ${list.size} человек")
+            return sum
         }
     }
 
     val farmerTaskCollectors = object : TaskCollectors() {
-        override fun collect() {
+        override fun collect(): Int {
             val list = peasant.filter { it.profession == Profession.FARMER }
-            val count = list.size
-            coffers += count * 3
-            println("Сбор налогов ${Profession.FARMER}, $count человек")
+            val sum = list.size*3
+            coffers += sum
+            println("Сбор налогов ${Profession.FARMER}, ${list.size} человек")
+            return sum
         }
     }
 
