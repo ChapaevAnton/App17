@@ -43,6 +43,13 @@ enum class Profession(private val profession: String) {
 
 }
 
+abstract class TaskCollectors : Collect
+
+interface Collect {
+    fun collect(): Int
+}
+
 //extends fun
 fun String.yourHighness() = "Ваше высочество, $this"
+
 

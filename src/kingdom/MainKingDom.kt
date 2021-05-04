@@ -20,5 +20,8 @@ fun main(args: Array<String>) {
 
     println("Золота в казне: ${kingdom.coffers}")
 
+    upgradeYourArcher(kingdom.archers) { println(it) }
+    upgradeYourWarrior(kingdom.warriors) { println(it) }
 
+    giveFunToPeasants(kingdom.peasant)
 }
